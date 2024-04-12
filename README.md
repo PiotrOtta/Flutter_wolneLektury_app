@@ -14,7 +14,6 @@ and made with
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 
-[Wolnelektury](https://aimeos.org/TYPO3) lorem ipsum
 ## Table Of Content
 
 - [Installation](#installation)
@@ -22,6 +21,10 @@ and made with
     - [Dev](#dev)
 - [Authors](#authors)
 - [Links](#links)
+
+## About
+
+[Wolnelektury](https://aimeos.org/TYPO3) lorem ipsum
 
 ## Installation
 

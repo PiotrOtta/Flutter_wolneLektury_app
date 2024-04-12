@@ -1,4 +1,4 @@
-<img src="logo_wolneLektury_api.png" style="top: 80px; position:sticky; right:40px" alt="Aimeos logo" title="Aimeos" align="right" height="160" />
+<img src="logo_wolneLektury_api.png" style="margin-top: 50px" alt="Aimeos logo" title="Aimeos" align="right" height="160" />
 
 # Wolnelektury Mobile
 

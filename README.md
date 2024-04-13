@@ -1,4 +1,4 @@
-<img src="logo_wolneLektury_api.png" style="margin-top: 50px" alt="Aimeos logo" title="Aimeos" align="right" height="160" />
+<img src="logo_wolneLektury_api.png" style="margin-top: 50px" alt="wolneLekturyMobileLogo" title="Aimeos" align="right" height="160" />
 
 # Wolnelektury Mobile
 
@@ -17,12 +17,15 @@ and made with
 ## Table Of Content
 
 - [Installation](#installation)
-    - [Flutter](#flutter)
-    - [Dev](#dev)
+  - [Flutter](#flutter)
+  - [Dev](#dev)
 - [Authors](#authors)
 - [Links](#links)
 
 ## About
+
+<img src="assets/images/logo.png" alt="Aimeos logo" title="Aimeos" height="160" />
+<!-- <img src="assets/images/LogoWolneLektury_phone.png" alt="Aimeos logo" title="Aimeos" height="160" /> -->
 
 [Wolnelektury](https://aimeos.org/TYPO3) lorem ipsum
 
@@ -41,11 +44,13 @@ npm run dev
 ```
 
 ## Authors
+
 - Sławomir Palewski
 - Robert Latoszewski
 - Piotr Otta
+
 ## Links
 
-* [Wolnelektury Website](https://wolnelektury.pl/)
-* [Wolnelektury API Documentation](https://wolnelektury.pl/api/)
-* [Wolnelektury API Github](https://github.com/fnp/wolnelektury)
+- [Wolnelektury Website](https://wolnelektury.pl/)
+- [Wolnelektury API Documentation](https://wolnelektury.pl/api/)
+- [Wolnelektury API Github](https://github.com/fnp/wolnelektury)

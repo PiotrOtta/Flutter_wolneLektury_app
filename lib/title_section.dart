@@ -30,11 +30,11 @@ class _TitleSectionGestureDetector extends State<TitleSection> {
           border: Border.all(color: const Color.fromARGB(255, 244, 244, 244)),
           borderRadius: const BorderRadius.all(Radius.circular(8))),
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 16, top: 4, left: 16, right: 16),
+        padding: const EdgeInsets.only(bottom: 4, top: 4, left: 16, right: 16),
         child: Row(
           children: [
             Container(
-              margin: const EdgeInsets.only(right: 12, top: 6),
+              margin: const EdgeInsets.only(right: 12, top: 8, bottom: 8),
               decoration: const BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -92,8 +92,8 @@ class _TitleSectionGestureDetector extends State<TitleSection> {
                       repeat: false,
                       animate: _isFavourite,
                       glowColor: Colors.red,
-                      curve: Curves.fastOutSlowIn,
-                      glowRadiusFactor: 1.2,
+                      curve: Curves.ease,
+                      glowRadiusFactor: 1.5,
                       glowCount: _isFavourite ? 1 : 0,
                       duration: _isFavourite
                           ? const Duration(milliseconds: 800)

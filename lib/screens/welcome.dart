@@ -36,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
                 CustomElevatedButton(
                   buttonText: 'ZACZNIJ PRZEGLĄDAĆ',
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, "/bookList");
+                    Navigator.pushReplacementNamed(context, "/navigation");
                   },
                 ),
                 CustomElevatedButton(

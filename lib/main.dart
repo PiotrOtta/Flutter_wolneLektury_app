@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wolne_lektury_client/button_section.dart';
-import 'package:wolne_lektury_client/screens/book_list.dart';
+import 'package:wolne_lektury_client/screens/navigation.dart';
 import 'package:wolne_lektury_client/screens/welcome.dart';
 import 'package:wolne_lektury_client/title_section.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/':(context) => const WelcomeScreen(),
-        '/bookList':(context) => const BookListScreen()
+        '/navigation':(context) => const NavigationScreen()
       },
     );
   }

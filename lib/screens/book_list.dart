@@ -11,7 +11,7 @@ class BookListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       const SizedBox(height: 20.0),
-      const SizedBox(child: const CustomSearchBar()),
+      const SizedBox(child: CustomSearchBar()),
       Expanded(
         child: ListView(children: const [
           BookListElement(bookTitle: "Wiedźmin 1"),

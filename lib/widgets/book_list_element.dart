@@ -1,27 +1,3 @@
-// class BookListElement extends StatelessWidget {
-//   const BookListElement({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         const Flexible(
-//           child: InkWell(
-//             child: Row(
-//               children: [Text("test dsadas dsada dasdasd asdas")],
-//             ),
-//           ),
-//         ),
-//         Flexible(
-//           child: IconButton(
-//             onPressed: () {}, 
-//             icon: const Icon(Icons.favorite_border)
-//           ),
-//         )
-//     ]);
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'dart:convert';
@@ -34,13 +10,13 @@ class BookListElement extends StatefulWidget {
   const BookListElement({
     super.key, 
     required this.bookTitle, 
-    this.description, 
-    this.base64Image
+    required this.thumbnailUrl,
+    this.description
   });
   
   final String bookTitle;
   final String? description;
-  final String? base64Image;
+  final String thumbnailUrl;
 
   @override
   State<BookListElement> createState() => _BookListElementState();
@@ -76,10 +52,19 @@ class _BookListElementState extends State<BookListElement> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'assets/images/placeholder.png',
-                  width: 80,
-                ),
+                child: widget.thumbnailUrl.isNotEmpty // Sprawdzasz, czy URL obrazka nie jest pusty
+                    ? Image.network(
+                        widget.thumbnailUrl,
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        'assets/images/placeholder.png',
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
             Expanded(

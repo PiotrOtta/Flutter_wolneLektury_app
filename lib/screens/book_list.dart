@@ -45,7 +45,10 @@ class _BookListScreenState extends State<BookListScreen> {
           child: ListView.builder(
             itemCount: books.length,
             itemBuilder: (context, index) {
-              return BookListElement(bookTitle: books[index].title);
+              return BookListElement(
+                bookTitle: books[index].title,
+                thumbnailUrl: books[index].thumbnailUrl
+              );
             },
           ),
         )

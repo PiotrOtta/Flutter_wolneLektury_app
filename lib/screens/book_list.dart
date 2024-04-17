@@ -39,7 +39,6 @@ class _BookListScreenState extends State<BookListScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const SizedBox(height: 20.0),
         Expanded(
             child: Stack(
           children: [
@@ -50,6 +49,12 @@ class _BookListScreenState extends State<BookListScreen> {
                 return BookListElement(
                   bookTitle: books[index].title,
                   thumbnailUrl: books[index].thumbnailUrl,
+                  favorite: BookDetailsDto.bookFavourites.firstWhere(
+                              (element) => element?.title == books[index].title,
+                              orElse: () => null) !=
+                          null
+                      ? true
+                      : false,
                 );
               },
             ),

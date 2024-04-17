@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'dart:convert';
 
+import 'package:wolne_lektury_client/models/book_details_dto.dart';
+
 Image imageFromBase64String(String base64String) {
   return Image.memory(base64Decode(base64String));
 }
@@ -101,6 +103,20 @@ class _BookListElementState extends State<BookListElement> {
                 GestureDetector(
                     onTap: () => {
                           setState(() {
+                            BookDetailsDto? book = BookDetailsDto.bookFavourites
+                                .firstWhere(
+                                    (element) =>
+                                        element?.title == widget.bookTitle,
+                                    orElse: () => null);
+                            if (BookDetailsDto.bookFavourites.isNotEmpty &&
+                                book != null) {
+                              BookDetailsDto.bookFavourites.remove(book);
+                            } else {
+                              BookDetailsDto.bookFavourites.add(BookDetailsDto(
+                                  title: widget.bookTitle,
+                                  author: '',
+                                  thumbnailUrl: widget.thumbnailUrl));
+                            }
                             widget.favorite = !widget.favorite;
                           })
                         },
@@ -115,7 +131,7 @@ class _BookListElementState extends State<BookListElement> {
                           ? const Duration(milliseconds: 800)
                           : const Duration(milliseconds: 0),
                       child: Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Container(
                             decoration: const BoxDecoration(
                                 // color: Colors.white,

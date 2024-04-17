@@ -22,18 +22,24 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         Expanded(
             child: Stack(
           children: [
-            ListView.builder(
-              padding: const EdgeInsets.only(bottom: 60),
-              itemCount: BookDetailsDto.bookFavourites.length,
-              itemBuilder: (context, index) {
-                return BookListElement(
-                  bookTitle: BookDetailsDto.bookFavourites[index]?.title ?? '',
-                  thumbnailUrl:
-                      BookDetailsDto.bookFavourites[index]?.thumbnailUrl ?? '',
-                  favorite: true,
-                );
-              },
-            ),
+            BookDetailsDto.bookFavourites.length == 0
+                ? const Center(
+                    child: Text("Nie dodałeś jeszcze ulubionych książek"),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 60),
+                    itemCount: BookDetailsDto.bookFavourites.length,
+                    itemBuilder: (context, index) {
+                      return BookListElement(
+                        bookTitle:
+                            BookDetailsDto.bookFavourites[index]?.title ?? '',
+                        thumbnailUrl: BookDetailsDto
+                                .bookFavourites[index]?.thumbnailUrl ??
+                            '',
+                        favorite: true,
+                      );
+                    },
+                  ),
           ],
         ))
         // const SizedBox(child: CustomSearchBar()),

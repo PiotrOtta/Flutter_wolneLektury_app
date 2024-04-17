@@ -86,45 +86,95 @@ class _SearchScreenState extends State<SearchScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Epoki'),
+              decoration: InputDecoration(
+                labelText: 'Epoki',
+                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                filled: true, // Włączenie wypełnienia
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                ),
+              ),
               items: _buildDropdownItems(bookEpoch),
               onChanged: (value) {},
+              menuMaxHeight: 400,
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Gatunek'),
+              decoration: InputDecoration(
+                labelText: 'Gatunek',
+                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                filled: true, // Włączenie wypełnienia
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                ),
+              ),
               items: _buildDropdownItems(bookGenre),
               onChanged: (value) {},
+              menuMaxHeight: 400,
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Rodzaj'),
+              decoration: InputDecoration(
+                labelText: 'Rodzaj',
+                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                filled: true, // Włączenie wypełnienia
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                ),
+              ),
               items: _buildDropdownItems(bookKind),
               onChanged: (value) {},
+              menuMaxHeight: 400,
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Motyw i temat'),
+              decoration: InputDecoration(
+                labelText: 'Motyw i temat',
+                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                filled: true, // Włączenie wypełnienia
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                ),
+              ),
               items: _buildDropdownItems(booksTheme),
               onChanged: (value) {},
+              menuMaxHeight: 400,
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(labelText: 'Kolekcje'),
+              decoration: InputDecoration(
+                labelText: 'Kolekcje',
+                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                filled: true, // Włączenie wypełnienia
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                ),
+              ),
               items: _buildDropdownItems(booksCollection),
               onChanged: (value) {},
+              menuMaxHeight: 400,
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
           const SizedBox(height: 32),

@@ -7,13 +7,12 @@ Image imageFromBase64String(String base64String) {
 }
 
 class BookListElement extends StatefulWidget {
-  const BookListElement({
-    super.key, 
-    required this.bookTitle, 
-    required this.thumbnailUrl,
-    this.description
-  });
-  
+  const BookListElement(
+      {super.key,
+      required this.bookTitle,
+      required this.thumbnailUrl,
+      this.description});
+
   final String bookTitle;
   final String? description;
   final String thumbnailUrl;
@@ -52,7 +51,8 @@ class _BookListElementState extends State<BookListElement> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: widget.thumbnailUrl.isNotEmpty // Sprawdzasz, czy URL obrazka nie jest pusty
+                child: widget.thumbnailUrl
+                        .isNotEmpty // Sprawdzasz, czy URL obrazka nie jest pusty
                     ? Image.network(
                         widget.thumbnailUrl,
                         width: 80,
@@ -100,40 +100,25 @@ class _BookListElementState extends State<BookListElement> {
                   _isFavourite = !_isFavourite;
                 })
               },
-              child: Row(
-                children: [
-                  AvatarGlow(
-                      repeat: false,
-                      animate: _isFavourite,
-                      glowColor: Colors.red,
-                      curve: Curves.ease,
-                      glowRadiusFactor: 1.5,
-                      glowCount: _isFavourite ? 1 : 0,
-                      duration: _isFavourite
-                          ? const Duration(milliseconds: 800)
-                          : const Duration(milliseconds: 0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            // color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(14))),
-                        child: Icon(
-                          Icons.favorite,
-                          color: color,
-                        ),
-                      )),
-                  Container(
-                    width: 6,
-                    margin: const EdgeInsets.only(top: 20),
-                    child: Text(_isFavourite ? '1' : '0',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                          color: color,
-                        )),
-                  )
-                ],
-              ),
+              child: AvatarGlow(
+                  repeat: false,
+                  animate: _isFavourite,
+                  glowColor: Colors.red,
+                  curve: Curves.ease,
+                  glowRadiusFactor: 1.5,
+                  glowCount: _isFavourite ? 1 : 0,
+                  duration: _isFavourite
+                      ? const Duration(milliseconds: 800)
+                      : const Duration(milliseconds: 0),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        // color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(14))),
+                    child: Icon(
+                      _isFavourite ? Icons.favorite : Icons.favorite_border,
+                      color: color,
+                    ),
+                  )),
             )
           ],
         ),

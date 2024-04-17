@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 // import 'package:wolne_lektury_client/button_section.dart';
 import 'package:wolne_lektury_client/screens/navigation.dart';
@@ -5,6 +7,7 @@ import 'package:wolne_lektury_client/screens/welcome.dart';
 // import 'package:wolne_lektury_client/title_section.dart';
 
 void main() {
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {}
   runApp(const MyApp());
 }
 
@@ -15,7 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Wolne lektury API klient",
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+          useMaterial3: true,
+          visualDensity: VisualDensity.adaptivePlatformDensity),
       initialRoute: '/',
       routes: {
         '/': (context) => const WelcomeScreen(),

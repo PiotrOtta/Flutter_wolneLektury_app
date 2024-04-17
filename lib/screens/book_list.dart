@@ -6,7 +6,6 @@ import 'package:wolne_lektury_client/services/wolne_lektury_api_connector.dart';
 import 'package:wolne_lektury_client/widgets/book_list_element.dart';
 import 'package:wolne_lektury_client/widgets/search_bar.dart';
 
-
 class BookListScreen extends StatefulWidget {
   const BookListScreen({super.key});
 
@@ -25,7 +24,8 @@ class _BookListScreenState extends State<BookListScreen> {
 
   Future<void> fetchData() async {
     try {
-      List<BookDetailsDto> fetchedBooks = await WolneLekturyApiConnector.fetchBooks();
+      List<BookDetailsDto> fetchedBooks =
+          await WolneLekturyApiConnector.fetchBooks();
 
       setState(() {
         books = fetchedBooks;
@@ -40,18 +40,23 @@ class _BookListScreenState extends State<BookListScreen> {
     return Column(
       children: <Widget>[
         const SizedBox(height: 20.0),
-        const SizedBox(child: CustomSearchBar()),
         Expanded(
-          child: ListView.builder(
-            itemCount: books.length,
-            itemBuilder: (context, index) {
-              return BookListElement(
-                bookTitle: books[index].title,
-                thumbnailUrl: books[index].thumbnailUrl
-              );
-            },
-          ),
-        )
+            child: Stack(
+          children: [
+            ListView.builder(
+              padding: const EdgeInsets.only(top: 60, bottom: 60),
+              itemCount: books.length,
+              itemBuilder: (context, index) {
+                return BookListElement(
+                  bookTitle: books[index].title,
+                  thumbnailUrl: books[index].thumbnailUrl,
+                );
+              },
+            ),
+            const CustomSearchBar(),
+          ],
+        ))
+        // const SizedBox(child: CustomSearchBar()),
       ],
     );
   }

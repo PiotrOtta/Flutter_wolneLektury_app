@@ -5,6 +5,7 @@ import 'package:wolne_lektury_client/models/book_genres_dto.dart';
 import 'package:wolne_lektury_client/models/book_kinds_dto.dart';
 import 'package:wolne_lektury_client/models/book_themes_dto.dart';
 import 'package:wolne_lektury_client/services/wolne_lektury_api_connector.dart';
+import 'package:wolne_lektury_client/widgets/custom_elevated_button.dart';
 
 
 class SearchScreen extends StatefulWidget {
@@ -127,22 +128,18 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           const SizedBox(height: 32),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  // Implement filter action
-                },
-                child: const Text('Filter'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // Implement reset action
-                },
-                child: const Text('Reset'),
-              ),
-            ],
+          CustomElevatedButton(
+            buttonText: 'Filtruj',
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, "/navigation");
+            },
+          ),
+          CustomElevatedButton(
+            buttonText: 'Cofnij',
+            onPressed: () {
+            },
+            backgroundColor: Colors.white,
+            textColor: Colors.grey,
           ),
         ],
       ),

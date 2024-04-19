@@ -3,6 +3,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'dart:convert';
 
 import 'package:wolne_lektury_client/models/book_details_dto.dart';
+import 'package:wolne_lektury_client/screens/book_details.dart';
 
 Image imageFromBase64String(String base64String) {
   return Image.memory(base64Decode(base64String));
@@ -13,13 +14,15 @@ class BookListElement extends StatefulWidget {
       {super.key,
       required this.bookTitle,
       required this.thumbnailUrl,
+      required this.author,
       this.description,
       this.favorite = false});
 
   final String bookTitle;
   final String? description;
   final String thumbnailUrl;
-  bool favorite;
+  final String author;
+  bool favorite; 
 
   @override
   State<BookListElement> createState() => _BookListElementState();
@@ -29,8 +32,15 @@ class _BookListElementState extends State<BookListElement> {
   @override
   Widget build(BuildContext context) {
     Color color = widget.favorite ? Colors.red : Colors.black;
-    return GestureDetector(
-        onTap: () => {print('kliknięto ${widget.bookTitle}')},
+    return InkWell(
+        onTap: () => {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BookDetailsScreen(
+            author: widget.author,
+            bookTitle: widget.bookTitle, 
+            thumbnailUrl: widget.thumbnailUrl, 
+            favorite: widget.favorite
+          )))
+        },
         child: Container(
           margin: const EdgeInsets.only(top: 6, bottom: 6, left: 20, right: 20),
           decoration: BoxDecoration(

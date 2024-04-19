@@ -51,11 +51,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     itemCount: BookDetailsDto.bookFavourites.length,
                     itemBuilder: (context, index) {
                       return BookListElement(
-                        bookTitle:
-                            BookDetailsDto.bookFavourites[index]?.title ?? '',
-                        thumbnailUrl: BookDetailsDto
-                                .bookFavourites[index]?.thumbnailUrl ??
-                            '',
+                        author: BookDetailsDto.bookFavourites[index]?.author ?? '',
+                        bookTitle: BookDetailsDto.bookFavourites[index]?.title ?? '',
+                        thumbnailUrl: BookDetailsDto.bookFavourites[index]?.thumbnailUrl ?? '',
                         favorite: true,
                       );
                     },

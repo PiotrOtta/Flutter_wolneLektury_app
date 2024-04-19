@@ -47,6 +47,7 @@ class _BookListScreenState extends State<BookListScreen> {
               itemCount: books.length,
               itemBuilder: (context, index) {
                 return BookListElement(
+                  author: books[index].author,
                   bookTitle: books[index].title,
                   thumbnailUrl: books[index].thumbnailUrl,
                   favorite: BookDetailsDto.bookFavourites.firstWhere(

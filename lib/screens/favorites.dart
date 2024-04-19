@@ -19,10 +19,30 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        const Padding(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.favorite,
+                  color: Colors.redAccent,
+                  size: 60,
+                ),
+                Text(
+                  "Polubienia",
+                  style: TextStyle(
+                      color: Colors.redAccent,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.italic),
+                ),
+              ],
+            )),
         Expanded(
             child: Stack(
           children: [
-            BookDetailsDto.bookFavourites.length == 0
+            BookDetailsDto.bookFavourites.isEmpty
                 ? const Center(
                     child: Text("Nie dodałeś jeszcze ulubionych książek"),
                   )

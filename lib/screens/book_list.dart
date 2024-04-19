@@ -50,6 +50,7 @@ class _BookListScreenState extends State<BookListScreen> {
                   author: books[index].author,
                   bookTitle: books[index].title,
                   thumbnailUrl: books[index].thumbnailUrl,
+                  fileUrl: books[index].fileUrl,
                   favorite: BookDetailsDto.bookFavourites.firstWhere(
                               (element) => element?.title == books[index].title,
                               orElse: () => null) !=

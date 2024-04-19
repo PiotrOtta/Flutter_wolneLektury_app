@@ -34,6 +34,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         author: BookDetailsDto.bookFavourites[index]?.author ?? '',
                         bookTitle: BookDetailsDto.bookFavourites[index]?.title ?? '',
                         thumbnailUrl: BookDetailsDto.bookFavourites[index]?.thumbnailUrl ?? '',
+                        fileUrl: BookDetailsDto.bookFavourites[index]?.fileUrl ?? '',
                         favorite: true,
                       );
                     },

@@ -15,6 +15,7 @@ class BookListElement extends StatefulWidget {
       required this.bookTitle,
       required this.thumbnailUrl,
       required this.author,
+      required this.fileUrl,
       this.description,
       this.favorite = false});
 
@@ -22,6 +23,7 @@ class BookListElement extends StatefulWidget {
   final String? description;
   final String thumbnailUrl;
   final String author;
+  final String fileUrl;
   bool favorite; 
 
   @override
@@ -38,7 +40,8 @@ class _BookListElementState extends State<BookListElement> {
             author: widget.author,
             bookTitle: widget.bookTitle, 
             thumbnailUrl: widget.thumbnailUrl, 
-            favorite: widget.favorite
+            favorite: widget.favorite,
+            fileUrl: widget.fileUrl,
           )))
         },
         child: Container(
@@ -124,8 +127,9 @@ class _BookListElementState extends State<BookListElement> {
                             } else {
                               BookDetailsDto.bookFavourites.add(BookDetailsDto(
                                   title: widget.bookTitle,
-                                  author: '',
-                                  thumbnailUrl: widget.thumbnailUrl));
+                                  author: widget.author,
+                                  thumbnailUrl: widget.thumbnailUrl,
+                                  fileUrl: widget.fileUrl));
                             }
                             widget.favorite = !widget.favorite;
                           })

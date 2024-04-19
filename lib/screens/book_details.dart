@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wolne_lektury_client/screens/book_reader.dart';
 import 'package:wolne_lektury_client/widgets/custom_elevated_button.dart';
 
 class BookDetailsScreen extends StatelessWidget  {
@@ -8,7 +9,8 @@ class BookDetailsScreen extends StatelessWidget  {
     required this.author,
     this.description, 
     required this.thumbnailUrl,
-    required this.favorite
+    required this.favorite,
+    required this.fileUrl
     });
 
   final String bookTitle;
@@ -16,6 +18,7 @@ class BookDetailsScreen extends StatelessWidget  {
   final String? description;
   final String thumbnailUrl;
   final bool favorite;
+  final String fileUrl;
   
 
   @override
@@ -53,7 +56,13 @@ class BookDetailsScreen extends StatelessWidget  {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  CustomElevatedButton(buttonText: "cofnij", onPressed: () {Navigator.pop(context);})        
+                  CustomElevatedButton(buttonText: "cofnij", onPressed: () {Navigator.pop(context);}),
+                  CustomElevatedButton(buttonText: "czytaj", onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookReaderScreen(
+                      fileUrl: fileUrl,
+                      title: bookTitle
+                    )));
+                  })  
                 ],
               ),
               )

@@ -5,7 +5,8 @@ class BookReaderScreen extends StatefulWidget {
   final String fileUrl;
   final String title;
 
-  const BookReaderScreen({super.key, required this.fileUrl, required this.title});
+  const BookReaderScreen(
+      {super.key, required this.fileUrl, required this.title});
 
   @override
   State<BookReaderScreen> createState() => _BookReaderScreenState();
@@ -23,6 +24,7 @@ class _BookReaderScreenState extends State<BookReaderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = ScrollController();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -35,17 +37,18 @@ class _BookReaderScreenState extends State<BookReaderScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            return Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Scrollbar(
-                child: ListView(
-                  children: [
-                    Text(
-                      snapshot.data!,
-                      style: const TextStyle(fontSize: 16.0),
-                    ),
-                  ],
-                ),
+            return Scrollbar(
+              controller: scrollController,
+              child: ListView(
+                padding: const EdgeInsets.all(10),
+                scrollDirection: Axis.vertical,
+                controller: scrollController,
+                children: [
+                  Text(
+                    snapshot.data!,
+                    style: const TextStyle(fontSize: 16.0),
+                  ),
+                ],
               ),
             );
           }

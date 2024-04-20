@@ -244,6 +244,14 @@ class _BookListElementState extends State<BookListElement>
                   width: isAnimating ? 56 : 60,
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.fastOutSlowIn,
+                  decoration: const BoxDecoration(boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      spreadRadius: -4,
+                      blurRadius: 8,
+                      offset: Offset(2, 0), // Shadow position
+                    ),
+                  ]),
                   child: Image.network(
                     thumbnailUrl,
                     width: 60,

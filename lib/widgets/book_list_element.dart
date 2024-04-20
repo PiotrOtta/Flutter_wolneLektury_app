@@ -24,26 +24,54 @@ class BookListElement extends StatefulWidget {
   final String thumbnailUrl;
   final String author;
   final String fileUrl;
-  bool favorite; 
+  bool favorite;
 
   @override
   State<BookListElement> createState() => _BookListElementState();
 }
 
-class _BookListElementState extends State<BookListElement> {
+class _BookListElementState extends State<BookListElement>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  bool isAnimating = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this, // the SingleTickerProviderStateMixin
+      duration: const Duration(milliseconds: 500),
+    );
+  }
+
+  @override
+  dispose() {
+    _controller.dispose(); // Bez tego śmierć :)
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Color color = widget.favorite ? Colors.red : Colors.black;
     return InkWell(
         onTap: () => {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => BookDetailsScreen(
-            author: widget.author,
-            bookTitle: widget.bookTitle, 
-            thumbnailUrl: widget.thumbnailUrl, 
-            favorite: widget.favorite,
-            fileUrl: widget.fileUrl,
-          )))
-        },
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BookDetailsScreen(
+                            author: widget.author,
+                            bookTitle: widget.bookTitle,
+                            thumbnailUrl: widget.thumbnailUrl,
+                            favorite: widget.favorite,
+                            fileUrl: widget.fileUrl,
+                          )))
+            },
+        onHover: (value) => {
+              setState(() {
+                isAnimating = value;
+              }),
+              if (value) {_controller.forward()} else {_controller.reverse()}
+            },
         child: Container(
           margin: const EdgeInsets.only(top: 6, bottom: 6, left: 20, right: 20),
           decoration: BoxDecoration(
@@ -58,13 +86,14 @@ class _BookListElementState extends State<BookListElement> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(right: 12, top: 8, bottom: 8),
+                  width: 90,
                   decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Color.fromARGB(255, 190, 190, 190),
-                        spreadRadius: 1,
+                        color: Color.fromARGB(255, 210, 210, 210),
+                        spreadRadius: 0.6,
                         blurRadius: 8,
-                        offset: Offset(-2, 4), // Shadow position
+                        offset: Offset(0, 0), // Shadow position
                       ),
                     ],
                   ),
@@ -72,12 +101,7 @@ class _BookListElementState extends State<BookListElement> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: widget.thumbnailUrl
                             .isNotEmpty // Sprawdzasz, czy URL obrazka nie jest pusty
-                        ? Image.network(
-                            widget.thumbnailUrl,
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.cover,
-                          )
+                        ? getBookWithCover(widget.thumbnailUrl)
                         : Image.asset(
                             'assets/images/placeholder.png',
                             width: 80,
@@ -164,4 +188,70 @@ class _BookListElementState extends State<BookListElement> {
           ),
         ));
   }
+
+  Widget getBookWithCover(thumbnailUrl) => Stack(
+        children: [
+          Positioned(
+            left: 11,
+            top: 4,
+            child: RotationTransition(
+              // turns: const AlwaysStoppedAnimation(6 / 360),
+              turns: Tween(begin: 0.0, end: 2 / 360).animate(CurvedAnimation(
+                  parent: _controller, curve: Curves.fastOutSlowIn)),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: AnimatedContainer(
+                  height: 80,
+                  width: isAnimating ? 62 : 60,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.fastOutSlowIn,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 9,
+            top: 4,
+            child: RotationTransition(
+              // turns: const AlwaysStoppedAnimation(6 / 360),
+              turns: Tween(begin: 0.0, end: 4 / 360).animate(CurvedAnimation(
+                  parent: _controller, curve: Curves.fastOutSlowIn)),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: AnimatedContainer(
+                  height: 80,
+                  width: isAnimating ? 61 : 60,
+                  decoration: const BoxDecoration(
+                    color: Color.fromRGBO(255, 248, 225, 1),
+                  ),
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.fastOutSlowIn,
+                ),
+              ),
+            ),
+          ),
+          RotationTransition(
+              // turns: const AlwaysStoppedAnimation(6 / 360),
+              turns: Tween(begin: 0.0, end: 6 / 360).animate(CurvedAnimation(
+                  parent: _controller, curve: Curves.fastOutSlowIn)),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: AnimatedContainer(
+                  height: 80,
+                  width: isAnimating ? 56 : 60,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.fastOutSlowIn,
+                  child: Image.network(
+                    thumbnailUrl,
+                    width: 60,
+                    height: 80,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              )),
+        ],
+      );
 }

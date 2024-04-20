@@ -29,12 +29,9 @@ class BookDetailsScreen extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 40),
-            child: Expanded(
-              flex: 5,
-              child: thumbnailUrl.isNotEmpty
-                  ? getImageFromNetwork()
-                  : getPlaceholderImage(),
-            ),
+            child: thumbnailUrl.isNotEmpty
+                ? getImageFromNetwork()
+                : getPlaceholderImage(),
           ),
           Expanded(
               flex: 3,

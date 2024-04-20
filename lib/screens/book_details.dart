@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wolne_lektury_client/screens/book_reader.dart';
 import 'package:wolne_lektury_client/widgets/custom_elevated_button.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class BookDetailsScreen extends StatelessWidget {
   const BookDetailsScreen(
@@ -40,11 +41,15 @@ class BookDetailsScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(
                   children: [
-                    Text(
-                      author,
-                      style:
-                          const TextStyle(fontSize: 22.0, color: Colors.grey),
-                      textAlign: TextAlign.center,
+                    AnimatedTextKit(
+                      isRepeatingAnimation: false,
+                      displayFullTextOnTap: true,
+                      animatedTexts: [
+                        TypewriterAnimatedText(author,
+                            textStyle: const TextStyle(
+                                fontSize: 22.0, color: Colors.grey),
+                            speed: const Duration(milliseconds: 70)),
+                      ],
                     ),
                     const SizedBox(
                       height: 20.0,

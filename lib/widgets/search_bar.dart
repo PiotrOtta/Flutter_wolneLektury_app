@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:wolne_lektury_client/models/book_details_dto.dart';
+import 'package:wolne_lektury_client/models/suggestion_dto.dart';
+import 'package:wolne_lektury_client/screens/book_details.dart';
+import 'package:wolne_lektury_client/services/wolne_lektury_api_connector.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key});
@@ -12,7 +16,7 @@ class CustomSearchBar extends StatefulWidget {
 
 class _CustomSearchBarState extends State<CustomSearchBar> {
   final TextEditingController _textEditingController = TextEditingController();
-  List<String> _suggestions = [];
+  List<SuggestionDto> _suggestions = [];
 
   @override
   void dispose() {
@@ -28,12 +32,10 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
         final jsonData = jsonDecode(response.body);
 
         if (jsonData != null && jsonData is List && jsonData.isNotEmpty) {
-          var bookTitles = jsonData.where((item) => item['type'] == "book").map((item) => item['label']);
-          if (bookTitles.isNotEmpty) {
-            setState(() {
-              _suggestions = List<String>.from(bookTitles);
-            });
-          }
+          var suggestions = jsonData.where((item) => item['type'] == "book").map((item) => SuggestionDto.fromJson(item));
+          setState(() {
+            _suggestions = List<SuggestionDto>.from(suggestions);
+          });
         } else {
           setState(() {
             _suggestions = [];
@@ -49,6 +51,33 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
       });
     }
   }
+
+  Future<void> _switchToBookDetailsScreen(SuggestionDto suggestion) async {
+    try {
+      BookDetailsDto book = await _getBookDetails(suggestion);
+      if (mounted) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => BookDetailsScreen(
+              bookTitle: book.title, 
+              author: book.author, 
+              thumbnailUrl: book.thumbnailUrl, 
+              favorite: false, 
+              fileUrl: book.fileUrl
+            )
+          )
+        );
+      }
+
+    } catch (e) {
+      print('Error fetching book: $e');
+    }
+
+  }
+
+  Future<BookDetailsDto> _getBookDetails(SuggestionDto suggestion) async {
+    return await WolneLekturyApiConnector.fetchBookByPathParam(pathParam: suggestion.extractLastPathParam());
+}
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +100,12 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           );
         },
         suggestionsBuilder: (BuildContext context, SearchController controller) {
-          return _suggestions.map((label) {
+          return _suggestions.map((suggestion) {
             return ListTile(
-              title: Text(label),
+              title: Text(suggestion.title),
               onTap: () {
                 setState(() {
-                  controller.closeView(label);
+                  _switchToBookDetailsScreen(suggestion);
                 });
               },
             );

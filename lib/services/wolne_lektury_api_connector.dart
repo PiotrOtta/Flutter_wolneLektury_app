@@ -21,6 +21,16 @@ class WolneLekturyApiConnector {
     }
   }
 
+  static Future<BookDetailsDto> fetchBookByPathParam({required String pathParam}) async {
+    final response = await http.get(Uri.parse('$baseUrl/books/$pathParam'));
+    if (response.statusCode == 200) {
+      dynamic data = json.decode(utf8.decode(response.bodyBytes));
+      return BookDetailsDto.fromJsonDetailed(data);
+    } else {
+      throw Exception('Failed to load books');
+    }
+  }
+
   static Future<List<BookEpochsDto>> fetchBookEpochs() async {
     final response = await http.get(Uri.parse('$baseUrl/epochs/'));
     if (response.statusCode == 200) {

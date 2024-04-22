@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wolne_lektury_client/models/book_collections_dto.dart';
 import 'package:wolne_lektury_client/models/book_epochs_dto.dart';
 import 'package:wolne_lektury_client/models/book_genres_dto.dart';
 import 'package:wolne_lektury_client/models/book_kinds_dto.dart';
-import 'package:wolne_lektury_client/models/book_themes_dto.dart';
+import 'package:wolne_lektury_client/screens/book_list.dart';
+import 'package:wolne_lektury_client/screens/navigation.dart';
 import 'package:wolne_lektury_client/services/wolne_lektury_api_connector.dart';
 import 'package:wolne_lektury_client/widgets/custom_elevated_button.dart';
 
@@ -20,8 +20,6 @@ class _SearchScreenState extends State<SearchScreen> {
   List<String> bookEpoch = [];
   List<String> bookGenre = [];
   List<String> bookKind = [];
-  List<String> booksTheme = [];
-  List<String> booksCollection = [];
   
   @override
   void initState() {
@@ -40,18 +38,10 @@ class _SearchScreenState extends State<SearchScreen> {
       List<BookKindsDto> fetchedKinds =
           await WolneLekturyApiConnector.fetchBookKinds();
 
-      List<BookThemesDto> fetchedThemes =
-          await WolneLekturyApiConnector.fetchBookThemes();
-
-      List<BookCollectionsDto> fetchedCollections =
-          await WolneLekturyApiConnector.fetchBookCollections();
-
       setState(() {
         bookEpoch = fetchedEpochs.map((dto) => dto.slug).toList();
         bookGenre = fetchedGenres.map((dto) => dto.slug).toList();
         bookKind = fetchedKinds.map((dto) => dto.slug).toList();
-        booksTheme = fetchedThemes.map((dto) => dto.slug).toList();
-        booksCollection = fetchedCollections.map((dto) => dto.title).toList();
       });
 
     } catch (e) {
@@ -71,6 +61,11 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+  String selectedAuthor = '';
+  String selectedEpoch = '';
+  String selectedGenre = '';
+  String selectedKind = '';
+
     return Material(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -88,6 +83,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
                 ),
               ),
+              onChanged: (value) 
+              {
+                if(value.isNotEmpty){
+                  selectedAuthor = value;
+                }
+              },
             ),
           ),
           const SizedBox(height: 16),
@@ -105,7 +106,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               items: _buildDropdownItems(bookEpoch),
-              onChanged: (value) {},
+              onChanged: (value) 
+              {
+                if(value != null && value.isNotEmpty){
+                  selectedEpoch = value;
+                }
+              },
               menuMaxHeight: 400,
               borderRadius: BorderRadius.circular(8),
             ),
@@ -125,7 +131,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               items: _buildDropdownItems(bookGenre),
-              onChanged: (value) {},
+              onChanged: (value) 
+              {
+                if(value != null && value.isNotEmpty){
+                  selectedGenre = value;
+                }
+              },
               menuMaxHeight: 400,
               borderRadius: BorderRadius.circular(8),
             ),
@@ -145,47 +156,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               items: _buildDropdownItems(bookKind),
-              onChanged: (value) {},
-              menuMaxHeight: 400,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DropdownButtonFormField<String>(
-              isExpanded: true,
-              decoration: InputDecoration(
-                labelText: 'Motyw i temat',
-                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
-                filled: true, // Włączenie wypełnienia
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
-                ),
-              ),
-              items: _buildDropdownItems(booksTheme),
-              onChanged: (value) {},
-              menuMaxHeight: 400,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DropdownButtonFormField<String>(
-              isExpanded: true,
-              decoration: InputDecoration(
-                labelText: 'Kolekcje',
-                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
-                filled: true, // Włączenie wypełnienia
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
-                ),
-              ),
-              items: _buildDropdownItems(booksCollection),
-              onChanged: (value) {},
+              onChanged: (value) 
+              {
+                if(value != null && value.isNotEmpty){
+                  selectedKind = value;
+                }
+              },
               menuMaxHeight: 400,
               borderRadius: BorderRadius.circular(8),
             ),
@@ -194,12 +170,23 @@ class _SearchScreenState extends State<SearchScreen> {
           CustomElevatedButton(
             buttonText: 'Filtruj',
             onPressed: () {
-              Navigator.pushReplacementNamed(context, "/navigation");
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NavigationScreen(
+                    selectedAuthor: selectedAuthor,
+                    selectedEpoch: selectedEpoch,
+                    selectedGenre: selectedGenre,
+                    selectedKind: selectedKind
+                  ),
+                ),
+              );
             },
           ),
           CustomElevatedButton(
             buttonText: 'Cofnij',
             onPressed: () {
+              Navigator.pushReplacementNamed(context, "/navigation");
             },
             backgroundColor: Colors.white,
             textColor: Colors.grey,

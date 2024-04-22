@@ -63,7 +63,7 @@ class BookDetailsScreen extends StatelessWidget {
                       height: 20.0,
                     ),
                     CustomElevatedButton(
-                        buttonText: "czytaj",
+                        buttonText: "Czytaj",
                         backgroundColor: Colors.blueAccent,
                         onPressed: () {
                           Navigator.push(
@@ -73,7 +73,7 @@ class BookDetailsScreen extends StatelessWidget {
                                       fileUrl: fileUrl, title: bookTitle)));
                         }),
                     CustomElevatedButton(
-                        buttonText: "cofnij",
+                        buttonText: "Cofnij",
                         onPressed: () {
                           Navigator.pop(context);
                         }),

@@ -4,8 +4,12 @@ import 'package:wolne_lektury_client/screens/favorites.dart';
 import 'package:wolne_lektury_client/screens/search.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+  const NavigationScreen({super.key, this.selectedAuthor, this.selectedEpoch, this.selectedGenre, this.selectedKind});
 
+  final String? selectedAuthor;
+  final String? selectedEpoch;
+  final String? selectedGenre;
+  final String? selectedKind;
   @override
   State<StatefulWidget> createState() => _NavigationScreenState();
 }
@@ -52,7 +56,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ),
         body: <Widget>[
           // home screen
-          const BookListScreen(),
+        BookListScreen(
+          selectedAuthor: widget.selectedAuthor,
+          selectedEpoch: widget.selectedEpoch,
+          selectedGenre: widget.selectedGenre,
+          selectedKind: widget.selectedKind,
+        ),
           // search screen
           const SearchScreen(),
           // favorites screen

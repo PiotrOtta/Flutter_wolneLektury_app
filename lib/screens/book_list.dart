@@ -8,8 +8,13 @@ import 'package:wolne_lektury_client/widgets/search_bar.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class BookListScreen extends StatefulWidget {
-  const BookListScreen({super.key});
+  const BookListScreen({super.key, this.selectedAuthor, this.selectedEpoch, this.selectedGenre, this.selectedKind});
 
+  final String? selectedAuthor;
+  final String? selectedEpoch;
+  final String? selectedGenre;
+  final String? selectedKind;
+  
   @override
   State<BookListScreen> createState() => _BookListScreenState();
 }
@@ -33,8 +38,13 @@ class _BookListScreenState extends State<BookListScreen> {
   Future<void> _fetchPage(int pageKey) async {
     try {
       final newItems = (await WolneLekturyApiConnector.fetchBooks(
-              count: pageKey > 0 ? pageKey : 10))
+          count: pageKey > 0 ? pageKey : 10, 
+          selectedAuthor: widget.selectedAuthor,
+          selectedEpoch: widget.selectedEpoch,
+          selectedGenre: widget.selectedGenre,
+          selectedKind: widget.selectedKind))
           .sublist(lastValue);
+
       final isLastPage = newItems.length < _pageSize;
       lastValue = pageKey;
       if (isLastPage) {

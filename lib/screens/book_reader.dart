@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:wolne_lektury_client/services/wolne_lektury_api_connector.dart';
 
 class BookReaderScreen extends StatefulWidget {
   final String fileUrl;
@@ -15,17 +15,9 @@ class BookReaderScreen extends StatefulWidget {
 class _BookReaderScreenState extends State<BookReaderScreen> {
   
   Future<String> _fetchTextFile() async {
-    if (widget.fileUrl.isEmpty) {
-      return "Nie znaleziono książki w wersji tekstowej";
-    } else {
-      final response = await http.get(Uri.parse(widget.fileUrl));
-      if (response.statusCode == 200) {
-        return response.body;
-      } else {
-        throw Exception('Failed to load text file');
-      }
-    }
+  return await WolneLekturyApiConnector.fetchBookText(widget.fileUrl);
   }
+
 
   @override
   Widget build(BuildContext context) {

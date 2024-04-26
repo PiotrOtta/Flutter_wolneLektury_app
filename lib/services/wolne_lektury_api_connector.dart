@@ -64,6 +64,19 @@ class WolneLekturyApiConnector {
     }
   }
 
+  static Future<String> fetchBookText(String fileUrl) async {
+    if (fileUrl.isEmpty) {
+      return "Nie znaleziono książki w wersji tekstowej";
+    } else {
+      final response = await http.get(Uri.parse(fileUrl));
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        throw Exception('Failed to load text file');
+      }
+    }
+  }
+
   static Future<List<BookEpochsDto>> fetchBookEpochs() async {
     final response = await http.get(Uri.parse('$baseUrl/epochs/'));
     if (response.statusCode == 200) {

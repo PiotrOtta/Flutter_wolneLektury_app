@@ -13,12 +13,17 @@ class BookReaderScreen extends StatefulWidget {
 }
 
 class _BookReaderScreenState extends State<BookReaderScreen> {
+  
   Future<String> _fetchTextFile() async {
-    final response = await http.get(Uri.parse(widget.fileUrl));
-    if (response.statusCode == 200) {
-      return response.body;
+    if (widget.fileUrl.isEmpty) {
+      return "Nie znaleziono książki w wersji tekstowej";
     } else {
-      throw Exception('Failed to load text file');
+      final response = await http.get(Uri.parse(widget.fileUrl));
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        throw Exception('Failed to load text file');
+      }
     }
   }
 

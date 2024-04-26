@@ -25,7 +25,7 @@ class WelcomeScreen extends StatelessWidget {
       children: [
         Positioned.fill(child: SvgPicture.string(svgString, fit: BoxFit.fill)),
         Container(
-          transform: Matrix4.translationValues(0.0, 400.0, 0.0),
+          transform: Matrix4.translationValues(0.0, 300.0, 0.0),
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(20)),

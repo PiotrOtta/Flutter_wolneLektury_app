@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wolne_lektury_client/models/book_epochs_dto.dart';
 import 'package:wolne_lektury_client/models/book_genres_dto.dart';
 import 'package:wolne_lektury_client/models/book_kinds_dto.dart';
-import 'package:wolne_lektury_client/screens/book_list.dart';
 import 'package:wolne_lektury_client/screens/navigation.dart';
 import 'package:wolne_lektury_client/services/wolne_lektury_api_connector.dart';
 import 'package:wolne_lektury_client/widgets/custom_elevated_button.dart';

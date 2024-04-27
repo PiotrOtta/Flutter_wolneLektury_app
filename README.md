@@ -10,7 +10,7 @@ Made for
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
 
-and made with
+with
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 
@@ -28,7 +28,7 @@ and made with
 
 <img src="assets/images/logo.png" alt="Wolne lektury mobile logo" title="WolneLekturyMobile" height="160" />
 
-This project is a mobile application for `iOS`, `Android` and `Windows` operating systems that allows users to download basic information about the collection of public books, readings and free literature available on the [wolneleuktury.pl](https://wolnelektury.pl/). The app uses the publicly available API of the same name. The following list shows the planned basic functionality of the app:
+This project is a mobile application for `iOS`, `Android` and `Windows` operating systems that allows users to download basic information about the collection of public books, readings and free literature available on the [wolnelektury.pl](https://wolnelektury.pl/). The app uses the publicly available API of the same name. The following list shows the planned basic functionality of the app:
 
 - Browsing books:
 

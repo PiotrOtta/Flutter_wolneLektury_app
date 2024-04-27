@@ -65,132 +65,135 @@ class _SearchScreenState extends State<SearchScreen> {
   String selectedGenre = '';
   String selectedKind = '';
 
-    return Material(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-           Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Autor',
+    return SingleChildScrollView(
+      child: Material(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 16),
+             Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Autor',
+                    fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                    filled: true, // Włączenie wypełnienia
+                    border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                  ),
+                ),
+                onChanged: (value) 
+                {
+                  if(value.isNotEmpty){
+                    selectedAuthor = value;
+                  }
+                },
+              ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: DropdownButtonFormField<String>(
+                isExpanded: true,
+                decoration: InputDecoration(
+                  labelText: 'Epoki',
                   fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
                   filled: true, // Włączenie wypełnienia
                   border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
-                ),
-              ),
-              onChanged: (value) 
-              {
-                if(value.isNotEmpty){
-                  selectedAuthor = value;
-                }
-              },
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DropdownButtonFormField<String>(
-              isExpanded: true,
-              decoration: InputDecoration(
-                labelText: 'Epoki',
-                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
-                filled: true, // Włączenie wypełnienia
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
-                ),
-              ),
-              items: _buildDropdownItems(bookEpoch),
-              onChanged: (value) 
-              {
-                if(value != null && value.isNotEmpty){
-                  selectedEpoch = value;
-                }
-              },
-              menuMaxHeight: 400,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DropdownButtonFormField<String>(
-              isExpanded: true,
-              decoration: InputDecoration(
-                labelText: 'Gatunek',
-                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
-                filled: true, // Włączenie wypełnienia
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
-                ),
-              ),
-              items: _buildDropdownItems(bookGenre),
-              onChanged: (value) 
-              {
-                if(value != null && value.isNotEmpty){
-                  selectedGenre = value;
-                }
-              },
-              menuMaxHeight: 400,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DropdownButtonFormField<String>(
-              isExpanded: true,
-              decoration: InputDecoration(
-                labelText: 'Rodzaj',
-                fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
-                filled: true, // Włączenie wypełnienia
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
-                ),
-              ),
-              items: _buildDropdownItems(bookKind),
-              onChanged: (value) 
-              {
-                if(value != null && value.isNotEmpty){
-                  selectedKind = value;
-                }
-              },
-              menuMaxHeight: 400,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          const SizedBox(height: 32),
-          CustomElevatedButton(
-            buttonText: 'Filtruj',
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NavigationScreen(
-                    selectedAuthor: selectedAuthor,
-                    selectedEpoch: selectedEpoch,
-                    selectedGenre: selectedGenre,
-                    selectedKind: selectedKind
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
                   ),
                 ),
-              );
-            },
-          ),
-          CustomElevatedButton(
-            buttonText: 'Cofnij',
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, "/navigation");
-            },
-            backgroundColor: Colors.white,
-            textColor: Colors.grey,
-          ),
-        ],
+                items: _buildDropdownItems(bookEpoch),
+                onChanged: (value) 
+                {
+                  if(value != null && value.isNotEmpty){
+                    selectedEpoch = value;
+                  }
+                },
+                menuMaxHeight: 400,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: DropdownButtonFormField<String>(
+                isExpanded: true,
+                decoration: InputDecoration(
+                  labelText: 'Gatunek',
+                  fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                  filled: true, // Włączenie wypełnienia
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                  ),
+                ),
+                items: _buildDropdownItems(bookGenre),
+                onChanged: (value) 
+                {
+                  if(value != null && value.isNotEmpty){
+                    selectedGenre = value;
+                  }
+                },
+                menuMaxHeight: 400,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: DropdownButtonFormField<String>(
+                isExpanded: true,
+                decoration: InputDecoration(
+                  labelText: 'Rodzaj',
+                  fillColor: const Color.fromARGB(158, 235, 235, 235), // Ustawienie koloru tła pola Dropdown
+                  filled: true, // Włączenie wypełnienia
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none, // Usunięcie zewnętrznej linii obramowania
+                  ),
+                ),
+                items: _buildDropdownItems(bookKind),
+                onChanged: (value) 
+                {
+                  if(value != null && value.isNotEmpty){
+                    selectedKind = value;
+                  }
+                },
+                menuMaxHeight: 400,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            const SizedBox(height: 32),
+            CustomElevatedButton(
+              buttonText: 'Filtruj',
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NavigationScreen(
+                      selectedAuthor: selectedAuthor,
+                      selectedEpoch: selectedEpoch,
+                      selectedGenre: selectedGenre,
+                      selectedKind: selectedKind
+                    ),
+                  ),
+                );
+              },
+            ),
+            CustomElevatedButton(
+              buttonText: 'Cofnij',
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, "/navigation");
+              },
+              backgroundColor: Colors.white,
+              textColor: Colors.grey,
+            ),
+          ],
+        ),
       ),
     );
   }

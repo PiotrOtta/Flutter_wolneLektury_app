@@ -57,8 +57,6 @@ This project is a mobile application for `iOS`, `Android` and `Windows` operatin
 
 ## Running the app
 
-This document is for the Flutter **Windows, Android and IOS compatible**.
-
 **Prerequisit:** `Flutter` is required! [Getting started with flutter](https://docs.flutter.dev/get-started/install)
 
 If all prerequisits of flutter are installed, follow these steps to run the app:

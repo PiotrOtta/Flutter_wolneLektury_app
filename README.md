@@ -1,6 +1,6 @@
-# Wolnelektury Mobile
+<img src="logo_wolneLektury_api.png" alt="wolneLekturyMobileLogo" title="wolneLekturyMobile Logo" align="center" height="160" />
 
-<img src="logo_wolneLektury_api.png" style="margin-top: 50px" alt="wolneLekturyMobileLogo" title="wolneLekturyMobile Logo" align="right" height="160" />
+<h1 align="center">Wolnelektury Mobile</h1>
 
 ![Stable Version](https://img.shields.io/badge/stable-1.0.0+1-blue)
 ![Latest Version](https://img.shields.io/badge/latest-1.0.0+1-yellow)

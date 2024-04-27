@@ -1,4 +1,6 @@
-<img src="logo_wolneLektury_api.png" alt="wolneLekturyMobileLogo" title="wolneLekturyMobile Logo" align="center" height="160" />
+<p align="center">
+  <img src="logo_wolneLektury_api.png" alt="wolneLekturyMobileLogo" title="wolneLekturyMobile Logo" align="center" height="160" />
+</p>
 
 <h1 align="center">Wolnelektury Mobile</h1>
 
